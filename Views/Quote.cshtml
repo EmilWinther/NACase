@@ -1,0 +1,50 @@
+﻿@{
+	Layout = "Master.cshtml";
+}
+@using Umbraco.Cms.Web.Common.PublishedModels;
+
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Quote>
+
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: #ffffff;
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: normal;
+    color: #ffffff;
+  }
+  
+  h3 {
+    font-size: 18px;
+    margin-top: 0;
+     color: #ffffff;
+  }
+  .quote-container {
+      display: inline-block;
+      background-color: #354052;
+  }
+  .centered {
+      text-align: center;
+        margin-top: 200px;
+
+  }
+</style>
+<div class="centered">
+<div class="quote-container">
+  <h1>@Model.Value("author")</h1>
+  <h2>@Model.Value("authorTitle")</h2>
+  <h3>@Model.Value("quoteText")</h3>
+</div>
+</div>

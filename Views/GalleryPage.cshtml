@@ -1,0 +1,58 @@
+﻿
+@using Umbraco.Cms.Web.Common.PublishedModels;
+
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.GalleryPage>
+
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+<!-- Necessary scripts and styles for the Slick carousel library -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+@{
+    // Retrieving the gallery images using the Value() method on the GalleryPage model
+    var galleryImages = Model.Value<IEnumerable<IPublishedContent>>("galleryImages");
+}
+@{
+	Layout = "Master.cshtml";
+}
+
+<!-- Div to contain the carousel -->
+<div class="gallery-carousel">
+    @foreach (var image in galleryImages)
+    {
+        <div><img src="@image.Url()" style="width: 25%" /></div>
+    }
+</div>
+
+<!-- Slick carousel script with appropriate settings -->
+<script>
+    $(document).ready(function() {
+        $('.gallery-carousel').slick({
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: true,
+            arrows: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        });
+    });
+</script>
+
+<style>
+.gallery-carousel {
+  margin: 250px auto 0; /* Center the carousel horizontally and add a 50px top margin */
+  width: 100%; /* Set the width of the carousel to 80% of the parent container */
+  height: auto;
+}
+
+
+.slick-slide img {
+  max-width: 100%;
+  height: auto; /* Prevent the images from stretching vertically */
+}
+</style>
